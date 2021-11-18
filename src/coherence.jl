@@ -113,7 +113,7 @@ compute the squared coherence matrices of `X`, that is,
 the coherence matrices at all Fourier discrete frequencies
 obtained from the Welch (sliding window) average cross-spectra.
 
-**optioal keyword arguments**:
+**optional keyword arguments**:
 
 `sr`, `wl`, `tapering`, `planner` and `slide` have the same meaning as for the
 [`spectra`](@ref) function.
