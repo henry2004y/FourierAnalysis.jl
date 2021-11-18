@@ -37,10 +37,10 @@ sr, t, bandwidth=128, 512, 2
 h=taper(harris4, t)
 x1=sinusoidal(10, 8, sr, t, 0)
 x2=sinusoidal(10, 19, sr, t, 0)
-x=Vector((x1+x2).*h.y+randn(t))
+x=(x1+x2).*h.y+randn(t)
 y1=sinusoidal(10, 6, sr, t, 0)
 y2=sinusoidal(10, 16, sr, t, 0)
-y=Vector((y1+y2).*h.y+randn(t))
+y=(y1+y2).*h.y+randn(t)
 
 # Vector of Time-Frequency Object for x and y
 𝒀 = TFanalyticsignal([x, y], sr, t)
@@ -57,14 +57,14 @@ Y=mean(𝒀, (8, 12), (1, 128))
 Y=mean(𝒀, (8, 12), (1, 128); check=false)
 
 # extract the data in a TF region (8:12Hz and samples 1:128) for the two objects
-E=extract(𝒀, (8, 12), (8, 12))
+E=extract(𝒀, (8, 12), (1, 128))
 # do the same computation without checking homogeneity of the two objects in 𝒀
-E=extract(𝒀, (8, 12), (8, 12); check=false)
+E=extract(𝒀, (8, 12), (1, 128); check=false)
 
 # compute time-frequency object for vector x
 Y=TFanalyticsignal(x, sr, t, bandwidth; fmax=32)
 
-# gather useful attributes to obtain nice heatmpap plots
+# gather useful attributes to obtain nice heatmap plots
 tfArgs=(right_margin = 2mm,
         top_margin = 2mm,
         xtickfont = font(10, "Times"),
@@ -73,10 +73,10 @@ tfArgs=(right_margin = 2mm,
 # plot the real part of the AS
 heatmap(tfAxes(Y)..., real(Y.y); c=:fire, tfArgs...)
 
-# ...the imaginary part of the AS
+# plot the imaginary part of the AS
 heatmap(tfAxes(Y)..., imag(Y.y); c=:bluesreds, tfArgs...)
 
-# ...the amplitude of the AS
+# plot the amplitude of the AS
 heatmap(tfAxes(Y)..., amplitude(Y.y); c=:amp, tfArgs...)
 
 
@@ -85,21 +85,21 @@ A=TFamplitude(Y)
 # and plot it (with different colors)
 heatmap(tfAxes(A)..., A.y; c=:fire, tfArgs...)
 
-# ...the amplitude of the AS smoothed in the freq. dim.
+# plot the amplitude of the AS smoothed in the freq. dim.
 heatmap(tfAxes(Y)...,
         amplitude(smooth(hannSmoother, noSmoother, Y).y);
         c=:amp, tfArgs...)
 
-# ...the amplitude of the AS smoothed in freq. and time
+# plot the amplitude of the AS smoothed in freq. and time
 heatmap(tfAxes(Y)...,
         amplitude(smooth(blackmanSmoother, blackmanSmoother, Y).y);
         c=:amp, tfArgs...)
 
-# ...the phase of the AS
+# plot the phase of the AS
 heatmap(tfAxes(Y)..., phase(Y.y);
         c=:bluesreds, tfArgs...)
 
-#or, generate a TFPhase object
+# or, generate a TFPhase object
 ϴ=TFphase(Y)
 # and plot it
 heatmap(tfAxes(ϴ)..., ϴ.y;
