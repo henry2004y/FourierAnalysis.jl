@@ -14,12 +14,12 @@
 
 """
 ```julia
-function sinusoidal(a :: IntOrReal,
-                    f :: IntOrReal,
-                   sr :: Int,
-                    t :: Int,
-                    θ :: IntOrReal = 0.;
-                DClevel = 0.)
+sinusoidal(a :: IntOrReal,
+           f :: IntOrReal,
+          sr :: Int,
+           t :: Int,
+           θ :: IntOrReal = 0.;
+          DClevel = 0.)
 ```
 
 Generate a sinusoidal wave with peak amplitude `a`, frequency `f`,
@@ -57,8 +57,8 @@ end
 
 """
 ```julia
-function fres(sr :: Int,
-              wl :: Int)
+fres(sr :: Int,
+     wl :: Int)
 ```
 
 FFT **f**requency **res**olution given sampling rate `sr` and window length `wl`.
@@ -77,10 +77,10 @@ fres(sr :: Int,
 
 """
 ```julia
-function f2b(f :: IntOrReal,
-            sr :: Int,
-            wl :: Int;
-        DC :: Bool = false)
+f2b(f :: IntOrReal,
+   sr :: Int,
+   wl :: Int;
+   DC :: Bool = false)
 ```
 
 **f**requency **to b**in. Return the bin (position) in a real-FFT vector best matching
@@ -118,10 +118,10 @@ f2b(f  :: IntOrReal,
 
 """
 ```julia
-function b2f(bin :: Int,
-              sr :: Int,
-              wl :: Int;
-        DC :: Bool = false)
+b2f(bin :: Int,
+     sr :: Int,
+     wl :: Int;
+     DC :: Bool = false)
 ```
 
 **b**in **to f**requency. Return the closest discrete Fourier frequency (in Hz)
@@ -153,9 +153,9 @@ b2f(bin :: Int,
 
 """
 ```julia
-function fdf(sr :: Int,
-             wl :: Int;
-          DC :: Bool = false)
+fdf(sr :: Int,
+    wl :: Int;
+    DC :: Bool = false)
 ```
 Return a vector with all **F**ourier **d**iscrete **f**requencies for a real-FFT,
 given sampling rate `sr` and window length `wl`.
@@ -181,8 +181,8 @@ fdf(sr :: Int,
 
 """
 ```julia
-function brange(wl :: Int;
-             DC :: Bool = false)
+brange(wl :: Int;
+       DC :: Bool = false)
 ```
 Return a range of bins for a real-FFT vector covering all Fourier discrete
 frequencies given window length `wl`.
@@ -204,10 +204,10 @@ brange(wl::Int;
 
 """
 ```julia
-function bbands(sr :: Int,
-                wl :: Int,
-         bandwidth :: IntOrReal;
-    DC :: Bool = false)
+bbands(sr :: Int,
+       wl :: Int,
+       bandwidth :: IntOrReal;
+       DC :: Bool = false)
 ```
 
 Return a vector of integers holding the limits of all `bandwidth`-spaced
@@ -253,10 +253,10 @@ end
 
 """
 ```julia
-function fbands(sr :: Int,
-                wl :: Int,
-         bandwidth :: IntOrReal;
-      DC :: Bool = false)
+fbands(sr :: Int,
+       wl :: Int,
+       bandwidth :: IntOrReal;
+       DC :: Bool = false)
 ```
 Return a vector of Frequencies (in Hz) to which the bins created by a call
 to function [`bbands`](@ref) with the same arguments correspond.
@@ -641,8 +641,8 @@ unwrapPhase(𝚯::TFPhaseVector) =
 
 """
 ```julia
-function sameParams(𝐒        :: FDobjectsVector,
-                    funcname :: String)
+sameParams(𝐒        :: FDobjectsVector,
+           funcname :: String)
 ```
 
 
@@ -681,8 +681,8 @@ sameParams(𝐒        :: FDobjectsVector,
 
 """
 ```julia
-function sameParams(𝒀        :: TFobjectsVector,
-                    funcname :: String) =
+sameParams(𝒀        :: TFobjectsVector,
+           funcname :: String)
 ```
 Return true if all objects in 𝒀 have the same `bandwidth`, `nonlinear`,
 `fsmoothing` and `tsmoothing` field, otherwise print an error message
@@ -709,7 +709,7 @@ sameParams(𝒀        :: TFobjectsVector,
 
 """
 ```julia
-function isLinear(𝒀::Union{FDobjectsVector, TFobjectsVector})
+isLinear(𝒀::Union{FDobjectsVector, TFobjectsVector})
 ```
 Return true if all objects in `𝒀` are linear.
 By definition, [Spectra](@ref) and [TFAmplitude](@ref) objects are linear.
@@ -726,7 +726,7 @@ isLinear(𝒀::TFobjectsVector) =
 
 """
 ```julia
-function isNonLinear(𝒀::Union{FDobjectsVector, TFobjectsVector})
+isNonLinear(𝒀::Union{FDobjectsVector, TFobjectsVector})
 ```
 Return true if all objects in `𝒀` are non-linear.
 By definition, [Spectra](@ref) and [TFAmplitude](@ref) objects are linear.
@@ -1515,8 +1515,8 @@ extr=extract
 
 """
 ```julia
-function bands(S :: Union{FDobjects, FDobjectsVector}
-       bandwidth :: IntOrReal)
+bands(S :: Union{FDobjects, FDobjectsVector},
+    bandwidth :: IntOrReal)
 ```
 
 Return band-pass average of spectral, cross-spectral or coherence estimates
